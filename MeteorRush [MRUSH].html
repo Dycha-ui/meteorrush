@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MeteorRush [MRUSH]</title>
+<style>
+:root{--bg:#0b0c10;--p:#14161d;--p2:#1c1f29;--b:#2a2e3b;--t:#e8eaf0;--m:#8b90a3;--a:#ff5a1f;--a2:#ffb400;--ct:#4aa3ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(1200px 500px at 80% -10%,#3a1608 0,transparent 60%),var(--bg);color:var(--t);font:15px/1.45 "Rajdhani","Segoe UI",system-ui,sans-serif}
+header{display:flex;align-items:center;gap:16px;padding:12px 20px;border-bottom:2px solid var(--a);background:#0008;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;backdrop-filter:blur(6px)}
+.logo{font-weight:900;font-size:26px;letter-spacing:2px;font-style:italic}.logo b{color:var(--a)}.logo small{color:var(--m);font-size:13px;letter-spacing:1px;margin-left:6px}
+nav{display:flex;gap:6px;margin-left:auto}
+nav button,.btn{background:var(--p2);color:var(--t);border:1px solid var(--b);padding:8px 14px;border-radius:4px;font:inherit;font-weight:700;text-transform:uppercase;letter-spacing:1px;cursor:pointer}
+nav button.on,.btn.pri{background:var(--a);border-color:var(--a);color:#fff}
+.btn:hover,nav button:hover{border-color:var(--a)}.btn.sm{padding:4px 9px;font-size:12px}.btn.red{border-color:#8a2b2b;color:#ff8f8f}
+main{max-width:1300px;margin:0 auto;padding:18px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.bar .sp{flex:1}
+.chip{padding:6px 14px;border:1px solid var(--b);background:var(--p);border-radius:20px;cursor:pointer;font-weight:700;color:var(--m)}
+.chip.on{background:var(--a2);color:#000;border-color:var(--a2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{background:var(--p);border:1px solid var(--b);border-left:4px solid var(--a);border-radius:6px;padding:14px}
+.card.ct{border-left-color:var(--ct)}
+.card h3{margin:0 0 4px;font-size:19px}.tag{font-size:11px;font-weight:800;padding:2px 7px;border-radius:3px;background:var(--a);color:#fff;margin-right:6px}.tag.ct{background:var(--ct)}
+.muted{color:var(--m)}
+.detail{background:var(--p);border:1px solid var(--b);border-radius:8px;padding:18px}
+table{width:100%;border-collapse:collapse;margin-top:12px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--b);vertical-align:top;min-width:110px}
+th{color:var(--a2);font-size:12px;text-transform:uppercase;letter-spacing:1px}
+td:first-child{font-weight:800;white-space:nowrap}
+.vid{aspect-ratio:16/9;width:100%;border:0;border-radius:4px;background:#000}
+.vfb{aspect-ratio:16/9;width:100%;border-radius:4px;background:#000;display:grid;place-items:center;text-align:center;padding:10px;color:var(--m);font-size:13px}
+.vfb a{display:inline-block;margin-top:6px;text-decoration:none}
+.warn{background:#3a2a08;border:1px solid var(--a2);color:var(--a2);border-radius:6px;padding:10px 14px;margin-bottom:14px;font-size:14px}
+input,select,textarea{background:var(--bg);color:var(--t);border:1px solid var(--b);border-radius:4px;padding:7px 9px;font:inherit;width:100%}
+textarea{min-height:60px}
+label{display:block;font-size:12px;color:var(--m);text-transform:uppercase;letter-spacing:1px;margin:8px 0 3px}
+.modal{position:fixed;inset:0;background:#000b;z-index:20;display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:20px}
+.modal.on{display:flex}.modal>div{background:var(--p);border:1px solid var(--a);border-radius:8px;padding:18px;width:min(900px,100%)}
+.pl{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px;padding:8px;background:var(--bg);border-radius:4px}
+.pl h4{grid-column:1/-1;margin:0;color:var(--a2)}
+.bwrap{display:grid;grid-template-columns:1fr 210px;gap:12px}
+#cv{width:100%;aspect-ratio:1;background:#111;border:2px solid var(--b);border-radius:6px;touch-action:none;cursor:crosshair}
+.tools{display:flex;flex-direction:column;gap:6px}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.tg button{background:var(--p2);border:1px solid var(--b);color:var(--t);border-radius:4px;padding:6px 2px;cursor:pointer;font:inherit;font-size:13px}
+.tg button.on{border-color:var(--a);background:#3a1a0e}
+.tools h5{margin:6px 0 0;color:var(--a2);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:20px;background:linear-gradient(135deg,#34150a,var(--p) 70%);border:1px solid var(--b);border-radius:10px;padding:22px;align-items:center}
+.hero h1{margin:6px 0;font-size:36px;font-style:italic;text-transform:uppercase;line-height:1.05}
+.novid{aspect-ratio:16/9;display:grid;place-items:center;border:1px dashed var(--b);border-radius:6px;color:var(--m)}
+.sec{margin:22px 0 8px;color:var(--a2);text-transform:uppercase;letter-spacing:2px;font-size:13px}
+.roles{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.role{background:var(--p);border:1px solid var(--b);border-bottom:4px solid var(--c);color:var(--t);border-radius:8px;padding:12px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;font:inherit}
+.role small{color:var(--m)}.role.on{background:var(--c);color:#000}.role.on small{color:#000}
+.ri{font-size:28px}.ri.big{font-size:46px}
+.pp{margin-top:12px;background:var(--p);border:1px solid var(--b);border-top:4px solid var(--c);border-radius:8px;padding:18px}
+.pph{display:flex;gap:14px;align-items:center}.pph h2{margin:0;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stats div{background:var(--bg);border-radius:6px;padding:10px;border-left:3px solid var(--c)}.stats small{display:block;color:var(--c);font-weight:800;letter-spacing:1px;margin-bottom:2px}
+.steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.step{background:var(--bg);border-radius:6px;padding:10px}.step b{display:block;margin-bottom:6px}
+.sn{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--c);color:#000;font-size:13px;margin-right:6px}
+summary{cursor:pointer;color:var(--a2);font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-top:18px}
+.tc{display:flex;gap:6px;margin-top:10px;font-size:20px}.tc span{background:var(--bg);border-radius:4px;padding:2px 6px}
+.card h3 .mp{color:var(--m);font-size:12px;margin-left:6px}
+@media(max-width:800px){.hero,.stats{grid-template-columns:1fr}.roles{gap:4px}.role small{font-size:10px}.bwrap{grid-template-columns:1fr}.pl{grid-template-columns:1fr 1fr}nav{margin-left:0;width:100%}nav button{flex:1;padding:8px 4px}}
+</style></head><body>
+<header><div class="logo">METEOR<b>RUSH</b><small>[MRUSH]</small></div>
+<nav id="nav"><button data-v="playbook">Playbook</button><button data-v="grenades">Grenades</button><button data-v="board">Board IGL</button></nav></header>
+<main id="app"></main>
+<div class="modal" id="modal"><div id="mbody"></div></div>
+<script>
+const MAPS=['mirage','nuke','ancient'],POS=['Entry','Rifler','Lurk','AWP','IGL'];
+const uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S={tactics:[],nades:[],boards:{},bg:{}},ui={pl:0,v:'playbook',map:'mirage',side:'all',open:null,ntype:'all'};
+try{const r=localStorage.getItem('mrush1');if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+if(!S.tactics.length)S.tactics=[{id:uid(),map:'mirage',side:'T',name:'A Execute – Palace/Ramp',desc:'Szybkie wejście na A po smoke CT i jungle.',players:[
+{pos:'Entry',role:'Wchodzi pierwszy na site przez Ramp',util:'Flash na Palace',timing:'0:20 po smoke'},
+{pos:'Rifler',role:'Trade fragi za entry, plant z kontroli',util:'Smoke Jungle',timing:'0:18'},
+{pos:'Lurk',role:'Trzyma Mid / Connector',util:'Molotov Connector',timing:'Zostaje do 0:40'},
+{pos:'AWP',role:'Kontroluje Palace',util:'Flash',timing:'0:22'},
+{pos:'IGL',role:'Smoke CT, call timing',util:'Smoke CT, Stairs',timing:'0:15'}].map(p=>({name:'',...p}))}];
+const save=()=>{try{localStorage.setItem('mrush1',JSON.stringify(S))}catch(e){alert('Brak miejsca w pamięci przeglądarki (może za duży obrazek mapy).')}};
+const $=s=>document.querySelector(s);
+const chips=(arr,cur,k,all)=>(all?[['all','Wszystkie']]:[]).concat(arr.map(a=>[a,a.toUpperCase()])).map(([v,l])=>`<span class="chip ${cur===v?'on':''}" onclick="ui.${k}='${v}';render()">${l}</span>`).join('');
+function render(){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===ui.v));
+ ({playbook:rPlay,grenades:rNades,board:rBoard})[ui.v]();
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{ui.v=b.dataset.v;ui.open=null;render()});
+/* PLAYBOOK */
+const ROLES={Entry:['⚔️','#ff5a1f'],Rifler:['🤝','#3ddc84'],Lurk:['🕵️','#a77bff'],AWP:['🎯','#ffb400'],IGL:['🧠','#4aa3ff']};
+const ri=p=>ROLES[p]||['👤','#8b90a3'];
+const ytid=u=>{const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);return m?m[1]:''};
+const vlist=s=>String(s||'').split('\n').map(l=>l.trim()).filter(Boolean).map((l,i)=>{const p=l.split('|'),url=p.pop().trim();return{title:p.join('|').trim()||'Krok '+(i+1),url,id:ytid(url)}});
+/* Osadzanie YT: błąd 153 pojawia się, gdy strona nie ma origin (adres file://).
+   W takim przypadku pokazujemy zamiast tego link do filmu. */
+const IS_FILE=location.protocol==='file:';
+const emb=id=>IS_FILE
+ ?`<div class="vfb"><div>Osadzanie YouTube nie działa przy otwarciu pliku z dysku (file://).<br><a class="btn sm" target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=${id}">▶ Obejrzyj na YouTube</a></div></div>`
+ :`<iframe class="vid" loading="lazy" src="https://www.youtube-nocookie.com/embed/${id}" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+const fileWarn=()=>IS_FILE?`<div class="warn">⚠️ Strona jest otwarta z dysku (file://), więc YouTube blokuje osadzone filmy (błąd 153). Uruchom ją przez http: w folderze z plikiem wpisz <b>python -m http.server 8000</b> i wejdź na <b>http://localhost:8000</b>, albo wrzuć plik na GitHub Pages / Netlify.</div>`:'';
+function rPlay(){
+ const a=$('#app');
+ const t=ui.open&&S.tactics.find(x=>x.id===ui.open);
+ if(t){
+  const p=t.players[ui.pl]||t.players[0],[ic,col]=ri(p.pos),mv=ytid(t.video),steps=vlist(p.vid);
+  a.innerHTML=`${fileWarn()}<div class="bar"><button class="btn" onclick="ui.open=null;render()">← Wróć</button><span class="sp"></span><button class="btn" onclick="editT('${t.id}')">Edytuj</button><button class="btn red" onclick="delT('${t.id}')">Usuń</button></div>
+  <div class="hero"><div><span class="tag ${t.side=='CT'?'ct':''}">${t.side}</span><span class="muted">${t.map.toUpperCase()}</span><h1>${esc(t.name)}</h1><p>${esc(t.desc).replace(/\n/g,'<br>')}</p></div>${mv?emb(mv):'<div class="novid">🎬 Brak głównego filmu</div>'}</div>
+  <div class="sec">Wybierz swoją rolę</div>
+  <div class="roles">${t.players.map((q,i)=>{const [e,c]=ri(q.pos);return `<button class="role ${i==ui.pl?'on':''}" style="--c:${c}" onclick="ui.pl=${i};render()"><span class="ri">${e}</span><b>${esc(q.pos)}</b><small>${esc(q.name)||'Gracz '+(i+1)}</small></button>`}).join('')}</div>
+  <div class="pp" style="--c:${col}"><div class="pph"><span class="ri big">${ic}</span><h2>${esc(p.pos)}${p.name?' · '+esc(p.name):''}</h2></div>
+  <div class="stats"><div><small>⚔️ ZADANIE</small>${esc(p.role)||'—'}</div><div><small>💣 GRANATY</small>${esc(p.util)||'—'}</div><div><small>⏱️ KIEDY</small>${esc(p.timing)||'—'}</div></div>
+  <div class="sec" style="margin-top:6px">🎬 Krok po kroku</div>
+  ${steps.length?`<div class="steps">${steps.map((v,i)=>`<div class="step" style="--c:${col}"><b><span class="sn">${i+1}</span>${esc(v.title)}</b>${v.id?emb(v.id):''}<a class="btn sm" style="text-decoration:none;display:inline-block;margin-top:6px" target="_blank" rel="noopener" href="${esc(v.url)}">Otwórz na YT</a></div>`).join('')}</div>`:'<p class="muted">Brak filmów dla tej roli. Dodaj je w edycji taktyki.</p>'}</div>
+  <details><summary>📋 Przegląd całej drużyny</summary><table><tr><th>Rola</th><th>Zadanie</th><th>Granaty</th><th>Kiedy</th></tr>${t.players.map(q=>`<tr><td>${ri(q.pos)[0]}${esc(q.pos)} ${esc(q.name)}</td><td>${esc(q.role)}</td><td>${esc(q.util)}</td><td>${esc(q.timing)}</td></tr>`).join('')}</table></details>`;
+  return}
+ const l=S.tactics.filter(x=>x.map===ui.map&&(ui.side==='all'||x.side===ui.side));
+ a.innerHTML=`<div class="bar">${chips(MAPS,ui.map,'map')}<span class="sp"></span>${chips(['T','CT'],ui.side,'side',1)}<button class="btn pri" onclick="editT()">+ Nowa taktyka</button></div>
+ <div class="grid">${l.map(x=>`<div class="card ${x.side=='CT'?'ct':''}" style="cursor:pointer" onclick="ui.open='${x.id}';ui.pl=0;render()"><span class="tag ${x.side=='CT'?'ct':''}">${x.side}</span>${x.video?'🎬':''}<h3>${esc(x.name)}</h3><div class="muted">${esc(x.desc).slice(0,100)}</div><div class="tc">${x.players.map(q=>`<span>${ri(q.pos)[0]}</span>`).join('')}</div></div>`).join('')||'<p class="muted">Brak taktyk na tej mapie. Dodaj pierwszą!</p>'}</div>`;
+}
+function editT(id){
+ const t=S.tactics.find(x=>x.id===id)||{map:ui.map,side:'T',name:'',desc:'',video:'',players:POS.map(p=>({name:'',pos:p,role:'',util:'',timing:'',vid:''}))};
+ $('#mbody').innerHTML=`<h2 style="margin-top:0">${id?'Edytuj':'Nowa'} taktyka</h2>
+ <div class="pl" style="grid-template-columns:2fr 1fr 1fr"><div><label>Nazwa</label><input id="f_name" value="${esc(t.name)}"></div><div><label>Mapa</label><select id="f_map">${MAPS.map(m=>`<option ${m==t.map?'selected':''}>${m}</option>`).join('')}</select></div><div><label>Strona</label><select id="f_side"><option ${t.side=='T'?'selected':''}>T</option><option ${t.side=='CT'?'selected':''}>CT</option></select></div></div>
+ <label>Opis / ogólny plan</label><textarea id="f_desc">${esc(t.desc)}</textarea>
+ <label>🎬 Główny film taktyki (link YouTube)</label><input id="f_vid" value="${esc(t.video)}">
+ ${t.players.map((p,i)=>`<div class="pl"><h4>${ri(p.pos)[0]} Gracz${i+1}</h4><div><label>Nick</label><input data-i="${i}" data-k="name" value="${esc(p.name)}"></div><div><label>Rola</label><select data-i="${i}" data-k="pos">${Object.keys(ROLES).map(r=>`<option ${r==p.pos?'selected':''}>${r}</option>`).join('')}</select></div><div><label>Granaty</label><input data-i="${i}" data-k="util" value="${esc(p.util)}"></div><div><label>Kiedy wchodzi</label><input data-i="${i}" data-k="timing" value="${esc(p.timing)}"></div><div style="grid-column:1/-1"><label>Co robi</label><textarea data-i="${i}" data-k="role">${esc(p.role)}</textarea></div><div style="grid-column:1/-1"><label>🎬 Filmy kroków — jeden na linię: Tytuł | link YT</label><textarea data-i="${i}" data-k="vid" placeholder="Wejście na Ramp | https://youtu.be/...">${esc(p.vid)}</textarea></div></div>`).join('')}
+ <div class="bar"><button class="btn pri" onclick="saveT('${id||''}')">Zapisz</button><button class="btn" onclick="closeM()">Anuluj</button></div>`;
+ $('#modal').classList.add('on');
+}
+function saveT(id){
+ const t=S.tactics.find(x=>x.id===id)||{id:uid()};
+ t.name=$('#f_name').value||'Bez nazwy';t.map=$('#f_map').value;t.side=$('#f_side').value;t.desc=$('#f_desc').value;t.video=$('#f_vid').value;
+ t.players=POS.map(()=>({}));document.querySelectorAll('#mbody [data-i]').forEach(e=>t.players[e.dataset.i][e.dataset.k]=e.value);
+ if(!id)S.tactics.push(t);ui.map=t.map;save();closeM();render();
+}
+function delT(id){if(confirm('Usunąć taktykę?')){S.tactics=S.tactics.filter(t=>t.id!==id);ui.open=null;save();render()}}
+const closeM=()=>$('#modal').classList.remove('on');
+/* GRENADES */
+const NT=['smoke','flash','molotov','he'];
+function rNades(){
+ const l=S.nades.filter(n=>n.map===ui.map&&(ui.ntype==='all'||n.type===ui.ntype));
+ $('#app').innerHTML=`${fileWarn()}<div class="bar">${chips(MAPS,ui.map,'map')}<span class="sp"></span>${chips(NT,ui.ntype,'ntype',1)}<button class="btn pri" onclick="editN()">+ Dodaj granat</button></div>
+ <div class="grid">${l.map(n=>{const id=ytid(n.url);return `<div class="card"><h3>${esc(n.title)}</h3><div class="muted" style="margin-bottom:8px"><span class="tag">${n.type.toUpperCase()}</span>${esc(n.note)}</div>${id?emb(id):''}<div class="bar" style="margin:8px 0 0"><a class="btn sm" style="text-decoration:none" target="_blank" rel="noopener" href="${esc(n.url)}">Otwórz na YT</a><span class="sp"></span><button class="btn sm" onclick="editN('${n.id}')">Edytuj</button><button class="btn sm red" onclick="delN('${n.id}')">Usuń</button></div></div>`}).join('')||'<p class="muted">Brak granatów. Wklej link do filmu z YouTube.</p>'}</div>`;
+}
+function editN(id){
+ const n=S.nades.find(x=>x.id===id)||{map:ui.map,type:'smoke',title:'',url:'',note:''};
+ $('#mbody').innerHTML=`<h2 style="margin-top:0">Granat</h2><label>Tytuł (np. Smoke CT z T spawn)</label><input id="n_t" value="${esc(n.title)}"><label>Mapa</label><select id="n_m">${MAPS.map(m=>`<option ${m==n.map?'selected':''}>${m}</option>`).join('')}</select><label>Typ</label><select id="n_y">${NT.map(m=>`<option ${m==n.type?'selected':''}>${m}</option>`).join('')}</select><label>Link YouTube</label><input id="n_u" value="${esc(n.url)}"><label>Notatka (pozycja, klawisze)</label><input id="n_n" value="${esc(n.note)}"><div class="bar" style="margin-top:12px"><button class="btn pri" onclick="saveN('${id||''}')">Zapisz</button><button class="btn" onclick="closeM()">Anuluj</button></div>`;
+ $('#modal').classList.add('on');
+}
+function saveN(id){const n=S.nades.find(x=>x.id===id)||{id:uid()};n.title=$('#n_t').value||'Bez nazwy';n.map=$('#n_m').value;n.type=$('#n_y').value;n.url=$('#n_u').value;n.note=$('#n_n').value;if(!id)S.nades.push(n);ui.map=n.map;save();closeM();render()}
+function delN(id){if(confirm('Usunąć?')){S.nades=S.nades.filter(n=>n.id!==id);save();render()}}
+/* BOARD */
+let B={objs:[],tool:'pen',color:'#ff5a1f',icon:'⚡',num:1,sel:null,cur:null,hist:[],fut:[],img:null,size:4};
+const ICONS=[['⚡','Flash'],['☁️','Smoke'],['🔥','Molotov'],['💥','HE'],['💣','Bomb'],['🎯','AWP'],['👁️','Cel'],['❌','Śmierć'],['⬆️','Wejście'],['⏱️','Czas']];
+const COLS=['#ff5a1f','#ffb400','#4aa3ff','#3ddc84','#ffffff','#ff4de1'];
+function rBoard(){
+ const names=Object.keys(S.boards).filter(k=>k.startsWith(ui.map+'|'));
+ $('#app').innerHTML=`<div class="bar">${chips(MAPS,ui.map,'map')}<span class="sp"></span><select id="bl" style="width:auto" onchange="loadB(this.value)"><option value="">— wczytaj tablicę —</option>${names.map(k=>`<option value="${esc(k)}">${esc(k.split('|')[1])}</option>`).join('')}</select><button class="btn" onclick="saveB()">Zapisz tablicę</button><button class="btn" onclick="png()">PNG</button></div>
+ <div class="bwrap"><canvas id="cv" width="1024" height="1024"></canvas><div class="tools">
+ <h5>Narzędzia</h5><div class="tg" id="tt">${[['pen','✏️ Rysuj'],['arrow','➡️ Strzałka'],['text','🅰️ Tekst'],['move','✋ Przesuń'],['eraser','🧹 Usuń']].map(([k,l])=>`<button data-t="${k}">${l}</button>`).join('')}</div>
+ <h5>Kolor</h5><div class="tg">${COLS.map(c=>`<button data-c="${c}" style="background:${c};height:26px"></button>`).join('')}</div>
+ <h5>Gracze</h5><div class="tg"><button data-p="T">T ${'①'}</button><button data-p="CT">CT ${'①'}</button><button onclick="B.num=B.num%5+1;this.textContent='Nr '+B.num">Nr 1</button></div>
+ <h5>Ikony</h5><div class="tg">${ICONS.map(([e,l])=>`<button data-i="${e}" title="${l}">${e}<br><small>${l}</small></button>`).join('')}</div>
+ <h5>Akcje</h5><div class="tg"><button onclick="undo()" title="Ctrl+Z">↩ Cofnij</button><button onclick="snap();B.objs=B.objs.filter(o=>o!==B.sel);B.sel=null;draw()">Usuń zazn.</button><button onclick="if(confirm('Wyczyścić?')){snap();B.objs=[];draw()}">Czyść</button></div>
+ <h5>Mapa (radar)</h5><input type="file" id="bgf" accept="image/*" style="font-size:12px"><button class="btn sm" onclick="delete S.bg[ui.map];save();loadBg()">Usuń radar</button>
+ <p class="muted" style="font-size:12px">Wgraj radar mapy (screen z CS2) — zapisze się dla tej mapy.</p></div></div>`;
+ const cv=$('#cv');cv.onpointerdown=pd;cv.onpointermove=pm;cv.onpointerup=pu;
+ $('#tt').onclick=e=>{const t=e.target.dataset.t;if(t){B.tool=t;mark()}};
+ document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{B.color=b.dataset.c;if(B.sel&&B.sel.t!='icon'&&B.sel.t!='pl'){B.sel.c=B.color;draw()}});
+ document.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{B.tool='icon';B.icon=b.dataset.i;mark()});
+ document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{B.tool='pl';B.side=b.dataset.p;mark()});
+ $('#bgf').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=1024;c.getContext('2d').drawImage(im,0,0,1024,1024);S.bg[ui.map]=c.toDataURL('image/jpeg',.8);save();loadBg()};im.src=URL.createObjectURL(f)};
+ B.objs=[];B.hist=[];B.fut=[];B.sel=null;loadBg();mark();
+}
+function mark(){document.querySelectorAll('#tt button').forEach(b=>b.classList.toggle('on',b.dataset.t===B.tool))}
+function loadBg(){B.img=null;if(S.bg[ui.map]){const i=new Image();i.onload=()=>{B.img=i;draw()};i.src=S.bg[ui.map]}else draw()}
+function saveB(){const n=prompt('Nazwa tablicy (np. A split):');if(!n)return;S.boards[ui.map+'|'+n]=JSON.parse(JSON.stringify(B.objs));save();rBoard()}
+function loadB(k){if(k){snap();B.objs=JSON.parse(JSON.stringify(S.boards[k]));draw()}}
+function png(){const a=document.createElement('a');a.download='mrush-'+ui.map+'.png';a.href=$('#cv').toDataURL();a.click()}
+function snap(){const j=JSON.stringify(B.objs);if(B.hist[B.hist.length-1]!==j){B.hist.push(j);if(B.hist.length>100)B.hist.shift();B.fut=[]}}
+function undo(){if(!B.hist.length)return;B.fut.push(JSON.stringify(B.objs));B.objs=JSON.parse(B.hist.pop());B.sel=null;B.cur=null;draw()}
+function redo(){if(!B.fut.length)return;B.hist.push(JSON.stringify(B.objs));B.objs=JSON.parse(B.fut.pop());B.sel=null;draw()}
+function draw(){
+ const cv=$('#cv');if(!cv)return;const x=cv.getContext('2d');x.clearRect(0,0,1024,1024);
+ if(B.img)x.drawImage(B.img,0,0);else{x.fillStyle='#161922';x.fillRect(0,0,1024,1024);x.strokeStyle='#232837';x.lineWidth=1;for(let i=0;i<=1024;i+=64){x.beginPath();x.moveTo(i,0);x.lineTo(i,1024);x.moveTo(0,i);x.lineTo(1024,i);x.stroke()}x.fillStyle='#2b3142';x.font='bold 90px sans-serif';x.textAlign='center';x.fillText(ui.map.toUpperCase(),512,500);x.font='28px sans-serif';x.fillText('wgraj radar mapy po prawej',512,550)}
+ [...B.objs,...(B.cur?[B.cur]:[])].forEach(o=>{
+  x.strokeStyle=x.fillStyle=o.c;x.lineWidth=o.w||4;x.lineCap=x.lineJoin='round';
+  if(o.t=='pen'){x.beginPath();o.p.forEach((q,i)=>i?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke()}
+  else if(o.t=='arrow'){const a=Math.atan2(o.y2-o.y1,o.x2-o.x1);x.beginPath();x.moveTo(o.x1,o.y1);x.lineTo(o.x2,o.y2);x.stroke();x.beginPath();x.moveTo(o.x2,o.y2);x.lineTo(o.x2-18*Math.cos(a-.4),o.y2-18*Math.sin(a-.4));x.lineTo(o.x2-18*Math.cos(a+.4),o.y2-18*Math.sin(a+.4));x.fill()}
+  else if(o.t=='text'){x.font='bold 30px sans-serif';x.textAlign='left';x.textBaseline='middle';x.lineWidth=5;x.strokeStyle='#000';x.strokeText(o.s,o.x,o.y);x.fillText(o.s,o.x,o.y)}
+  else if(o.t=='icon'){x.font='46px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle='#fff';x.fillText(o.e,o.x,o.y)}
+  else if(o.t=='pl'){x.fillStyle=o.s=='CT'?'#4aa3ff':'#ff5a1f';x.beginPath();x.arc(o.x,o.y,22,0,7);x.fill();x.strokeStyle='#fff';x.lineWidth=3;x.stroke();x.fillStyle='#fff';x.font='bold 26px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(o.n,o.x,o.y+1)}
+  if(o===B.sel){x.strokeStyle='#ffb400';x.lineWidth=2;x.setLineDash([6,4]);const b=bb(o);x.strokeRect(b[0]-6,b[1]-6,b[2]-b[0]+12,b[3]-b[1]+12);x.setLineDash([])}
+ });
+}
+function bb(o){if(o.t=='pen'){const a=o.p.map(q=>q[0]),b=o.p.map(q=>q[1]);return[Math.min(...a),Math.min(...b),Math.max(...a),Math.max(...b)]}
+ if(o.t=='arrow')return[Math.min(o.x1,o.x2),Math.min(o.y1,o.y2),Math.max(o.x1,o.x2),Math.max(o.y1,o.y2)];
+ if(o.t=='text')return[o.x,o.y-16,o.x+o.s.length*17,o.y+16];return[o.x-24,o.y-24,o.x+24,o.y+24]}
+function hit(p){for(let i=B.objs.length-1;i>=0;i--){const b=bb(B.objs[i]);if(p[0]>=b[0]-8&&p[0]<=b[2]+8&&p[1]>=b[1]-8&&p[1]<=b[3]+8)return B.objs[i]}return null}
+const pos=e=>{const r=$('#cv').getBoundingClientRect();return[(e.clientX-r.left)*1024/r.width,(e.clientY-r.top)*1024/r.height]};
+let drag=null;
+function pd(e){snap();const p=pos(e);$('#cv').setPointerCapture(e.pointerId);const t=B.tool;
+ if(t=='pen')B.cur={t:'pen',c:B.color,w:B.size,p:[p]};
+ else if(t=='arrow')B.cur={t:'arrow',c:B.color,w:B.size,x1:p[0],y1:p[1],x2:p[0],y2:p[1]};
+ else if(t=='text'){const s=prompt('Tekst:');if(s)B.objs.push({t:'text',c:B.color,s,x:p[0],y:p[1]})}
+ else if(t=='icon'){B.objs.push({t:'icon',e:B.icon,x:p[0],y:p[1]});B.tool='move'; B.sel=B.objs[B.objs.length-1];mark()}
+ else if(t=='pl'){B.objs.push({t:'pl',s:B.side,n:B.num,x:p[0],y:p[1]});B.num=B.num%5+1}
+ else if(t=='eraser'){const o=hit(p);if(o)B.objs=B.objs.filter(q=>q!==o)}
+ else if(t=='move'){B.sel=hit(p);drag=B.sel?p:null}
+ draw()}
+function pm(e){const p=pos(e);
+ if(B.cur){if(B.cur.t=='pen')B.cur.p.push(p);else{B.cur.x2=p[0];B.cur.y2=p[1]}draw()}
+ else if(drag&&B.sel){const dx=p[0]-drag[0],dy=p[1]-drag[1],o=B.sel;drag=p;
+  if(o.t=='pen')o.p.forEach(q=>{q[0]+=dx;q[1]+=dy});else if(o.t=='arrow'){o.x1+=dx;o.x2+=dx;o.y1+=dy;o.y2+=dy}else{o.x+=dx;o.y+=dy}draw()}}
+function pu(){if(B.cur){B.objs.push(B.cur);B.cur=null}drag=null;draw()}
+document.addEventListener('keydown',e=>{if(ui.v!='board'||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+ if((e.ctrlKey||e.metaKey)&&e.code=='KeyZ'){e.preventDefault();e.shiftKey?redo():undo()}
+ else if((e.ctrlKey||e.metaKey)&&e.code=='KeyY'){e.preventDefault();redo()}
+ else if(B.sel&&(e.key=='Delete'||e.key=='Backspace')){snap();B.objs=B.objs.filter(o=>o!==B.sel);B.sel=null;draw()}});
+render();
+</script></body></html>
