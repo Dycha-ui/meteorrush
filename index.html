@@ -100,12 +100,7 @@ let ADMIN=false;try{ADMIN=localStorage.getItem('mrush_admin')===ADMIN_HASH}catch
 const uid=()=>Math.random().toString(36).slice(2,9);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let S={tactics:[],nades:[],boards:{},bg:{}},ui={pl:0,v:'playbook',map:'mirage',side:'all',open:null,ntype:'all'};
-const defaultTactics=()=>[{id:uid(),map:'mirage',side:'T',name:'A Execute – Palace/Ramp',desc:'Szybkie wejście na A po smoke CT i jungle.',players:[
-{pos:'Entry',role:'Wchodzi pierwszy na site przez Ramp',util:'Flash na Palace',timing:'0:20 po smoke'},
-{pos:'Rifler',role:'Trade fragi za entry, plant z kontroli',util:'Smoke Jungle',timing:'0:18'},
-{pos:'Lurk',role:'Trzyma Mid / Connector',util:'Molotov Connector',timing:'Zostaje do 0:40'},
-{pos:'AWP',role:'Kontroluje Palace',util:'Flash',timing:'0:22'},
-{pos:'IGL',role:'Smoke CT, call timing',util:'Smoke CT, Stairs',timing:'0:15'}].map(p=>({name:'',...p}))}];
+const defaultTactics=()=>[];
 const save=()=>{if(!ADMIN)return;DIRTY=true;renderAuth();try{localStorage.setItem('mrush1',JSON.stringify(S))}catch(e){alert('Brak miejsca w pamięci przeglądarki (może za duży obrazek mapy).')}sendData()};
 const $=s=>document.querySelector(s);
 const chips=(arr,cur,k,all)=>(all?[['all','Wszystkie']]:[]).concat(arr.map(a=>[a,a.toUpperCase()])).map(([v,l])=>`<span class="chip ${cur===v?'on':''}" onclick="ui.${k}='${v}';render()">${l}</span>`).join('');
