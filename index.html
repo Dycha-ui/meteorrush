@@ -313,9 +313,16 @@ function rBoard(){
   <div class="bd-sec"><h5>Granaty i znaczniki</h5><div class="bd-g">${ICONS.map(k=>`<button class="bt" data-i="${k}" title="${ICON[k].n}">${svg(ICON[k].p,ICON[k].c,28)}<span>${ICON[k].n}</span></button>`).join('')}</div></div>
   <div class="bd-sec"><h5>Akcje</h5><div class="bd-g">${tbtn('undo','onclick="undo()" title="Ctrl+Z"')}${tbtn('del','onclick="snap();B.objs=B.objs.filter(o=>o!==B.sel);B.sel=null;draw()"')}${tbtn('clear','onclick="if(confirm(\'Wyczyścić tablicę?\')){snap();B.objs=[];B.sel=null;draw()}"')}</div></div>
   ${ADMIN?`<div class="bd-sec"><h5>Radar mapy</h5><input type="file" id="bgf" accept="image/*" style="font-size:12px"><button class="btn sm" style="margin-top:6px" onclick="delRadar()">Usuń wgrany radar</button>
-  <p class="bd-note">Radary możesz też wrzucić do repozytorium jako <b>radars/${ui.map}.png</b> — wtedy widzą je wszyscy.</p></div>`:'<p class="bd-note">Rysunki hosta widzisz na żywo. Wyłącz „Śledź hosta" w nagłówku, żeby rysować samemu (twoje rysunki nie są zapisywane).</p>'}
+  <p class="bd-note">Radary możesz też wrzucić do repozytorium jako <b>radars/${ui.map}.png</b> — wtedy widzą je wszyscy.</p></div>`:''}
  </div></div>`;
- const cv=$('#cv');cv.onpointerdown=pd;cv.onpointermove=pm;cv.onpointerup=pu;
+ const cv=$('#cv');
+ if(ADMIN){cv.onpointerdown=pd;cv.onpointermove=pm;cv.onpointerup=pu}
+ else{
+  /* gość: tylko podgląd, bez narzędzi i bez rysowania */
+  cv.style.cursor='default';cv.style.pointerEvents='none';
+  document.querySelector('.bd-wrap').style.gridTemplateColumns='1fr';
+  document.querySelector('.bd-side').innerHTML='<p class="bd-note">👁️ Tryb podglądu: tablicą steruje host (admin). Rysunki widzisz na żywo.</p>';
+ }
  $('.bd-side').onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
   if(d.t)B.tool=d.t;
   else if(d.c){B.color=d.c;if(B.sel&&['pen','arrow','text'].includes(B.sel.t)){B.sel.c=d.c;draw()}}
@@ -343,7 +350,7 @@ function mark(){
 function loadBg(){const m=ui.map,c=[S.bg[m],`radars/${m}.png`,`radars/${m}.jpg`,`radars/${m}.webp`].filter(Boolean);B.img=null;draw();
  (function next(){const s=c.shift();if(!s)return;const i=new Image();i.onload=()=>{if(ui.map===m&&$('#cv')){B.img=i;draw()}};i.onerror=next;i.src=s})()}
 function saveB(){if(!ADMIN)return;const n=prompt('Nazwa tablicy (np. A split):');if(!n)return;S.boards[ui.map+'|'+n]=JSON.parse(JSON.stringify(B.objs));save();rBoard()}
-function loadB(k){if(k){snap();B.objs=JSON.parse(JSON.stringify(S.boards[k]));B.sel=null;draw()}}
+function loadB(k){if(!k)return;snap();B.objs=JSON.parse(JSON.stringify(S.boards[k]));B.sel=null;draw()}
 function png(){try{const a=document.createElement('a');a.download='mrush-'+ui.map+'.png';a.href=$('#cv').toDataURL();a.click()}catch(e){alert('Nie można wyeksportować PNG przy otwarciu z dysku (file://). Uruchom stronę przez http/https.')}}
 function snap(){const j=JSON.stringify(B.objs);if(B.hist[B.hist.length-1]!==j){B.hist.push(j);if(B.hist.length>100)B.hist.shift();B.fut=[]}}
 function undo(){if(!B.hist.length)return;B.fut.push(JSON.stringify(B.objs));B.objs=JSON.parse(B.hist.pop());B.sel=null;B.cur=null;draw()}
@@ -391,7 +398,7 @@ function hit(p){for(let i=B.objs.length-1;i>=0;i--){const b=bb(B.objs[i]);if(p[0
 const pos=e=>{const r=$('#cv').getBoundingClientRect();return[(e.clientX-r.left)*1024/r.width,(e.clientY-r.top)*1024/r.height]};
 let drag=null;
 function pd(e){
- if(!ADMIN&&LIVE.connected&&LIVE.follow)return; /* widz śledzący hosta nie rysuje */
+ if(!ADMIN)return; /* tylko admin rysuje */
  snap();const p=pos(e);$('#cv').setPointerCapture(e.pointerId);const t=B.tool;
  if(t!='move')B.sel=null;
  if(t=='pen')B.cur={t:'pen',c:B.color,w:B.size,d:B.dash,p:[p]};
@@ -407,7 +414,7 @@ function pm(e){const p=pos(e);
  else if(drag&&B.sel){const dx=p[0]-drag[0],dy=p[1]-drag[1],o=B.sel;drag=p;
   if(o.t=='pen')o.p.forEach(q=>{q[0]+=dx;q[1]+=dy});else if(o.t=='arrow'){o.x1+=dx;o.x2+=dx;o.y1+=dy;o.y2+=dy}else{o.x+=dx;o.y+=dy}draw()}}
 function pu(){if(B.cur){B.objs.push(B.cur);B.cur=null}drag=null;draw()}
-document.addEventListener('keydown',e=>{if(ui.v!='board'||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+document.addEventListener('keydown',e=>{if(!ADMIN||ui.v!='board'||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
  if((e.ctrlKey||e.metaKey)&&e.code=='KeyZ'){e.preventDefault();e.shiftKey?redo():undo()}
  else if((e.ctrlKey||e.metaKey)&&e.code=='KeyY'){e.preventDefault();redo()}
  else if(B.sel&&(e.key=='Delete'||e.key=='Backspace')){snap();B.objs=B.objs.filter(o=>o!==B.sel);B.sel=null;draw()}});
