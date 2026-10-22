@@ -137,8 +137,8 @@ async function init(){
 }
 /* LIVE (WebRTC przez PeerJS): admin jest hostem, reszta tylko ogląda */
 let LIVE={peer:null,conns:[],conn:null,connected:false,follow:true,status:'init'};
-const liveSnap=()=>({t:'s',ui:{v:ui.v,map:ui.map,open:ui.open,pl:ui.pl,side:ui.side,ntype:ui.ntype},bmap:B.map,objs:B.objs,cur:B.cur});
-const liveData=()=>({t:'d',tactics:S.tactics,nades:S.nades,boards:S.boards});
+const liveSnap=()=>({t:'s',ui:{v:ui.v,map:ui.map,open:ui.open,pl:ui.pl,side:ui.side,ntype:ui.ntype},bmap:B.map,objs:B.objs,cur:B.cur,bg:S.bg[ui.map]||null});
+const liveData=()=>({t:'d',tactics:S.tactics,nades:S.nades,boards:S.boards,bg:S.bg});
 let _bt=0,_bq=null,_last='';
 function bcast(){
  if(!ADMIN||!LIVE.conns.length)return;
@@ -177,12 +177,28 @@ function liveView(){
 }
 function liveRecv(m){
  if(!m)return;
- if(m.t==='d'){S.tactics=m.tactics;S.nades=m.nades;S.boards=m.boards;if(LIVE.follow&&ui.v!=='board')render();return}
+ if(m.t==='d'){
+  S.tactics=m.tactics;S.nades=m.nades;S.boards=m.boards;
+  if(m.bg) { S.bg=m.bg; if(ui.v==='board') loadBg(); }
+  if(LIVE.follow&&ui.v!=='board')render();
+  return;
+ }
  if(m.t==='s'&&LIVE.follow){
   const u=m.ui,ch=['v','map','open','pl','side','ntype'].some(k=>ui[k]!==u[k]);
+  const prevMap=ui.map;
   Object.assign(ui,u);
+  if(m.bg!==undefined && S.bg[ui.map]!==m.bg){
+   if(m.bg) S.bg[ui.map]=m.bg; else delete S.bg[ui.map];
+   if(ui.v==='board') loadBg();
+  }
   if(ch)render();
-  if(m.bmap){B.drafts[m.bmap]=m.objs;if(B.map===m.bmap&&ui.v==='board'){B.objs=m.objs;B.cur=m.cur;B.sel=null;draw()}}
+  if(m.bmap){
+   B.drafts[m.bmap]=m.objs;
+   if(B.map===m.bmap&&ui.v==='board'){
+    if(prevMap!==m.bmap) loadBg();
+    B.objs=m.objs;B.cur=m.cur;B.sel=null;draw();
+   }
+  }
  }
 }
 function toggleFollow(){LIVE.follow=!LIVE.follow;renderLive();if(LIVE.follow&&LIVE.conn&&LIVE.connected)LIVE.conn.send({t:'hello'})}
