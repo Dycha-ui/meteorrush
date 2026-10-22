@@ -1,2 +1,406 @@
-{"tactics":[{"id":"j8p650b","name":"Second Entry split A","map":"mirage","side":"T","desc":"","video":"https://streamable.com/g5pv26","players":[{"name":"","pos":"Entry","util":"SMOKE,MOLOTOV","timing":"","role":"","vid":"https://streamable.com/41pdec"},{"name":"","pos":"Rifler","util":"SMOKE,MOLOTOV","timing":"","role":"","vid":"https://streamable.com/8bdfgt"},{"name":"","pos":"Lurk","util":"SMOKE,MOLOTOV, FLASH","timing":"","role":"","vid":"https://streamable.com/68osce"},{"name":"","pos":"AWP","util":"FLASH x2, SMOKE","timing":"","role":"","vid":"https://streamable.com/rkpxg1"},{"name":"","pos":"IGL","util":"SMOKE, MOLOTOV, FLASH x2","timing":"","role":"","vid":"https://streamable.com/lul52t"}]},{"id":"4nvbpsx","name":"Split B Pistol","map":"mirage","side":"T","desc":"","video":"https://streamable.com/1hepoq","players":[{"name":"","pos":"Entry","util":"","timing":"CALL","role":"Podnosi smoke od lurka","vid":"https://streamable.com/lsd5qz"},{"name":"","pos":"Rifler","util":"","timing":"CALL","role":"","vid":"https://streamable.com/c81yco"},{"name":"","pos":"Lurk","util":"SMOKE,MOLOTOV","timing":"CALL","role":"","vid":"https://streamable.com/rivtuc"},{"name":"","pos":"AWP","util":"","timing":"CALL","role":"","vid":"https://streamable.com/kgjlyi"},{"name":"","pos":"IGL","util":"SMOKE, FLASH x2","timing":"","role":"","vid":"https://streamable.com/lncm1o"}]},{"id":"h1kli8y","name":"POP A","map":"mirage","side":"T","desc":"","video":"https://streamable.com/45jjk6","players":[{"name":"","pos":"Entry","util":"","timing":"PO FLESHU","role":"","vid":"https://streamable.com/8vd0q8"},{"name":"","pos":"Rifler","util":"","timing":"PO FLESHU","role":"","vid":"https://streamable.com/b8ww27"},{"name":"","pos":"Lurk","util":"MOLOTOV, SMOKE, FLASH","timing":"CALL","role":"","vid":"https://streamable.com/eev1ee"},{"name":"","pos":"AWP","util":"SMOKE, FLASH x2","timing":"CALL","role":"","vid":"https://streamable.com/v9x2sh"},{"name":"","pos":"IGL","util":"SMOKE, FLASH x2, MOLOTOV","timing":"CALL","role":"","vid":"https://streamable.com/tyueqi"}]}],"nades":[{"id":"lfr7i3h","title":"SPAWN 1 OKNO","map":"Ancient","type":"smoke","url":"https://streamable.com/9jdkce","note":"JUMPTHROW + W"},{"id":"ml8s51w","title":"SPAWN 1 HEAVEN","map":"Ancient","type":"smoke","url":"https://streamable.com/llgz8e","note":"JUMPTHROW"},{"id":"m4dof1t","title":"SPAWN 1 ANTI-INSTA ELBOW","map":"Ancient","type":"molotov","url":"https://streamable.com/76zgeb","note":"SHIFT+W+JUMPTHROW"},{"id":"zuqrpfd","title":"SPAWN 2 HEAVEN-CAVE","map":"Ancient","type":"smoke","url":"https://streamable.com/moizw1","note":"JUMPTHROW+W"},{"id":"rki4657","title":"SPAWN 3 OKNO","map":"Ancient","type":"smoke","url":"https://streamable.com/ky64se","note":"JUMPTHROW+W"},{"id":"vfdn6yp","title":"SPAWN 3 SMOKE CAVE","map":"Ancient","type":"smoke","url":"https://streamable.com/c83yju","note":"JUMPTHROW"},{"id":"eag9fhy","title":"SPAWN 4 OKNO","map":"Ancient","type":"smoke","url":"https://streamable.com/109oe1","note":"JUMPTHROW + W"},{"id":"nacwsxf","title":"SPAWN 4 HEAVEN-CAVE","map":"Ancient","type":"smoke","url":"https://streamable.com/pdhntu","note":"JUMPTHROW"},{"id":"yiyb7np","title":"DONUT","map":"Ancient","type":"smoke","url":"https://streamable.com/h5cywg","note":"JUMPTHROW"},{"id":"h9ghkyd","title":"CT BOMBISTE A","map":"Ancient","type":"smoke","url":"https://streamable.com/naqxry","note":"JUMPTHROW"},{"id":"nkbgbpu","title":"DONUT BOMBSITE A","map":"Ancient","type":"smoke","url":"https://streamable.com/heamzc","note":"JUMPTHROW"},{"id":"g70uezk","title":"FAST CT BOMBISTE A","map":"Ancient","type":"smoke","url":"https://streamable.com/qyb99u","note":"JUMPTHROW"},{"id":"d132wfb","title":"INSTA SPAWN 5 ELBOW CT","map":"Ancient","type":"smoke","url":"https://streamable.com/poe0jp","note":"SHIFT+W+JUMPTHROW"},{"id":"4kzun2x","title":"SMOKE SHORT, LONG B","map":"Ancient","type":"smoke","url":"https://streamable.com/xamwsc","note":"JUMPTHROW"},{"id":"w27ribf","title":"SMOKE RED TO A","map":"Ancient","type":"smoke","url":"https://streamable.com/ynjkb6","note":"CROUCH+W+JUMPTHROW"},{"id":"x5nll20","title":"CONECTOR B , DEEP CT","map":"Ancient","type":"smoke","url":"https://streamable.com/cwztow","note":"JUMPTHROW+W , SHIFT+W+JUMPTHROW"},{"id":"czgzzxa","title":"ENTRY BOMBSITE A","map":"Ancient","type":"flash","url":"https://streamable.com/sou0c4","note":"W+THROW"},{"id":"rmqmq1e","title":"ENTRY MID","map":"Ancient","type":"flash","url":"https://streamable.com/mar64z","note":"JUMPTHROW"},{"id":"fmtqtsa","title":"MOLOTOV BOMBSITE A BOOST","map":"Ancient","type":"molotov","url":"https://streamable.com/errmxm","note":""},{"id":"d2xrr1a","title":"HEAVEN MID","map":"Ancient","type":"molotov","url":"https://streamable.com/fle6ow","note":""}],"boards":{"mirage|aa":[{"t":"pen","c":"#ff5a1f","w":4,"p":[[594.0575815738963,211.77735124760076],[564.5758157389636,213.74280230326295],[505.6122840690979,220.62188099808063],[490.87140115163146,222.5873320537428],[450.5796545105566,232.41458733205374],[402.42610364683304,255.0172744721689],[397.51247600767755,258.9481765834933],[374.9097888675624,284.4990403071017],[365.08253358925145,319.8771593090211],[364.09980806142033,329.70441458733205],[373.92706333973126,360.16890595009596],[401.4433781190019,389.6506717850288],[406.3570057581574,392.59884836852206],[448.61420345489444,408.3224568138196],[515.4395393474089,412.25335892514397],[523.3013435700576,411.27063339731285],[578.3339731285988,400.4606525911708],[642.21113243762,372.9443378119002],[650.0729366602687,369.0134357005758],[701.1746641074856,332.65259117082536],[731.6391554702495,289.4126679462572],[733.6046065259117,283.51631477927066],[740.4836852207294,242.24184261036467],[725.7428023032629,191.14011516314778],[693.3128598848368,152.81381957773513],[635.3320537428023,116.45297504798465],[572.4376199616123,92.8675623800384],[517.404990403071,84.02303262955854],[480.06142034548947,97.78119001919386],[459.4241842610365,135.12476007677543],[451.56238003838774,179.34740882917467],[450.5796545105566,227.50095969289828],[454.510556621881,284.4990403071017],[460.40690978886755,333.6353166986564],[468.2687140115163,378.84069097888676],[480.06142034548947,419.1324376199616],[497.75047984644914,456.4760076775432],[521.3358925143954,480.06142034548947],[555.7312859884837,497.75047984644914],[590.1266794625719,506.595009596929],[627.4702495201535,509.54318618042225],[669.7274472168906,507.57773512476007],[674.6410748560461,507.57773512476007],[716.898272552783,501.6813819577735],[749.3282149712093,493.81957773512477],[753.2591170825336,492.83685220729365],[783.7236084452975,482.02687140115165],[794.5335892514396,477.11324376199616],[795.5163147792706,477.11324376199616],[794.5335892514396,478.0959692898273],[783.7236084452975,484.9750479846449],[777.827255278311,487.9232245681382],[740.4836852207294,503.6468330134357],[691.3474088291747,517.404990403071],[682.5028790786948,518.3877159309021],[598.9712092130518,531.1631477927064],[526.2495201535509,538.042226487524],[505.6122840690979,540.0076775431862],[432.89059500959695,545.9040307101727],[360.16890595009596,549.8349328214971],[340.5143953934741,550.8176583493282],[264.84452975047986,548.8522072936661],[213.74280230326295,539.0249520153551],[198.01919385796546,535.0940499040307],[137.09021113243762,502.66410748560463],[106.62571976967371,471.2168905950096],[98.76391554702495,459.4241842610365],[78.12667946257197,405.3742802303263],[75.17850287907869,364.09980806142033],[79.10940499040306,344.4452975047985],[102.69481765834932,297.27447216890596],[135.12476007677543,266.80998080614205],[149.86564299424185,258.9481765834933],[237.3282149712092,231.43186180422265],[302.1880998080614,222.5873320537428],[345.42802303262954,219.63915547024953],[468.2687140115163,218.6564299424184],[563.5930902111324,221.60460652591172]]}]},"bg":{}}
-{"tactics":[],"nades":[{"id":"lfr7i3h","title":"SPAWN 1 OKNO","map":"Ancient","type":"smoke","url":"https://streamable.com/9jdkce","note":"JUMPTHROW + W"},{"id":"ml8s51w","title":"SPAWN 1 HEAVEN","map":"Ancient","type":"smoke","url":"https://streamable.com/llgz8e","note":"JUMPTHROW"},{"id":"m4dof1t","title":"SPAWN 1 ANTI-INSTA ELBOW","map":"Ancient","type":"molotov","url":"https://streamable.com/76zgeb","note":"SHIFT+W+JUMPTHROW"},{"id":"zuqrpfd","title":"SPAWN 2 HEAVEN-CAVE","map":"Ancient","type":"smoke","url":"https://streamable.com/moizw1","note":"JUMPTHROW+W"},{"id":"rki4657","title":"SPAWN 3 OKNO","map":"Ancient","type":"smoke","url":"https://streamable.com/ky64se","note":"JUMPTHROW+W"},{"id":"vfdn6yp","title":"SPAWN 3 SMOKE CAVE","map":"Ancient","type":"smoke","url":"https://streamable.com/c83yju","note":"JUMPTHROW"},{"id":"eag9fhy","title":"SPAWN 4 OKNO","map":"Ancient","type":"smoke","url":"https://streamable.com/109oe1","note":"JUMPTHROW + W"},{"id":"nacwsxf","title":"SPAWN 4 HEAVEN-CAVE","map":"Ancient","type":"smoke","url":"https://streamable.com/pdhntu","note":"JUMPTHROW"},{"id":"yiyb7np","title":"DONUT","map":"Ancient","type":"smoke","url":"https://streamable.com/h5cywg","note":"JUMPTHROW"},{"id":"h9ghkyd","title":"CT BOMBISTE A","map":"Ancient","type":"smoke","url":"https://streamable.com/naqxry","note":"JUMPTHROW"},{"id":"nkbgbpu","title":"DONUT BOMBSITE A","map":"Ancient","type":"smoke","url":"https://streamable.com/heamzc","note":"JUMPTHROW"},{"id":"g70uezk","title":"FAST CT BOMBISTE A","map":"Ancient","type":"smoke","url":"https://streamable.com/qyb99u","note":"JUMPTHROW"},{"id":"d132wfb","title":"INSTA SPAWN 5 ELBOW CT","map":"Ancient","type":"smoke","url":"https://streamable.com/poe0jp","note":"SHIFT+W+JUMPTHROW"},{"id":"4kzun2x","title":"SMOKE SHORT, LONG B","map":"Ancient","type":"smoke","url":"https://streamable.com/xamwsc","note":"JUMPTHROW"},{"id":"w27ribf","title":"SMOKE RED TO A","map":"Ancient","type":"smoke","url":"https://streamable.com/ynjkb6","note":"CROUCH+W+JUMPTHROW"},{"id":"x5nll20","title":"CONECTOR B , DEEP CT","map":"Ancient","type":"smoke","url":"https://streamable.com/cwztow","note":"JUMPTHROW+W , SHIFT+W+JUMPTHROW"},{"id":"czgzzxa","title":"ENTRY BOMBSITE A","map":"Ancient","type":"flash","url":"https://streamable.com/sou0c4","note":"W+THROW"},{"id":"rmqmq1e","title":"ENTRY MID","map":"Ancient","type":"flash","url":"https://streamable.com/mar64z","note":"JUMPTHROW"},{"id":"fmtqtsa","title":"MOLOTOV BOMBSITE A BOOST","map":"Ancient","type":"molotov","url":"https://streamable.com/errmxm","note":""},{"id":"d2xrr1a","title":"HEAVEN MID","map":"Ancient","type":"molotov","url":"https://streamable.com/fle6ow","note":""}],"boards":{"mirage|aa":[{"t":"pen","c":"#ff5a1f","w":4,"p":[[594.0575815738963,211.77735124760076],[564.5758157389636,213.74280230326295],[505.6122840690979,220.62188099808063],[490.87140115163146,222.5873320537428],[450.5796545105566,232.41458733205374],[402.42610364683304,255.0172744721689],[397.51247600767755,258.9481765834933],[374.9097888675624,284.4990403071017],[365.08253358925145,319.8771593090211],[364.09980806142033,329.70441458733205],[373.92706333973126,360.16890595009596],[401.4433781190019,389.6506717850288],[406.3570057581574,392.59884836852206],[448.61420345489444,408.3224568138196],[515.4395393474089,412.25335892514397],[523.3013435700576,411.27063339731285],[578.3339731285988,400.4606525911708],[642.21113243762,372.9443378119002],[650.0729366602687,369.0134357005758],[701.1746641074856,332.65259117082536],[731.6391554702495,289.4126679462572],[733.6046065259117,283.51631477927066],[740.4836852207294,242.24184261036467],[725.7428023032629,191.14011516314778],[693.3128598848368,152.81381957773513],[635.3320537428023,116.45297504798465],[572.4376199616123,92.8675623800384],[517.404990403071,84.02303262955854],[480.06142034548947,97.78119001919386],[459.4241842610365,135.12476007677543],[451.56238003838774,179.34740882917467],[450.5796545105566,227.50095969289828],[454.510556621881,284.4990403071017],[460.40690978886755,333.6353166986564],[468.2687140115163,378.84069097888676],[480.06142034548947,419.1324376199616],[497.75047984644914,456.4760076775432],[521.3358925143954,480.06142034548947],[555.7312859884837,497.75047984644914],[590.1266794625719,506.595009596929],[627.4702495201535,509.54318618042225],[669.7274472168906,507.57773512476007],[674.6410748560461,507.57773512476007],[716.898272552783,501.6813819577735],[749.3282149712093,493.81957773512477],[753.2591170825336,492.83685220729365],[783.7236084452975,482.02687140115165],[794.5335892514396,477.11324376199616],[795.5163147792706,477.11324376199616],[794.5335892514396,478.0959692898273],[783.7236084452975,484.9750479846449],[777.827255278311,487.9232245681382],[740.4836852207294,503.6468330134357],[691.3474088291747,517.404990403071],[682.5028790786948,518.3877159309021],[598.9712092130518,531.1631477927064],[526.2495201535509,538.042226487524],[505.6122840690979,540.0076775431862],[432.89059500959695,545.9040307101727],[360.16890595009596,549.8349328214971],[340.5143953934741,550.8176583493282],[264.84452975047986,548.8522072936661],[213.74280230326295,539.0249520153551],[198.01919385796546,535.0940499040307],[137.09021113243762,502.66410748560463],[106.62571976967371,471.2168905950096],[98.76391554702495,459.4241842610365],[78.12667946257197,405.3742802303263],[75.17850287907869,364.09980806142033],[79.10940499040306,344.4452975047985],[102.69481765834932,297.27447216890596],[135.12476007677543,266.80998080614205],[149.86564299424185,258.9481765834933],[237.3282149712092,231.43186180422265],[302.1880998080614,222.5873320537428],[345.42802303262954,219.63915547024953],[468.2687140115163,218.6564299424184],[563.5930902111324,221.60460652591172]]}]},"bg":{}}
+{
+  "tactics": [
+    {
+      "id": "j8p650b",
+      "name": "Second Entry split A",
+      "map": "mirage",
+      "side": "T",
+      "desc": "",
+      "video": "https://streamable.com/g5pv26",
+      "players": [
+        {
+          "name": "",
+          "pos": "Entry",
+          "util": "SMOKE,MOLOTOV",
+          "timing": "",
+          "role": "",
+          "vid": "https://streamable.com/41pdec"
+        },
+        {
+          "name": "",
+          "pos": "Rifler",
+          "util": "SMOKE,MOLOTOV",
+          "timing": "",
+          "role": "",
+          "vid": "https://streamable.com/8bdfgt"
+        },
+        {
+          "name": "",
+          "pos": "Lurk",
+          "util": "SMOKE,MOLOTOV, FLASH",
+          "timing": "",
+          "role": "",
+          "vid": "https://streamable.com/68osce"
+        },
+        {
+          "name": "",
+          "pos": "AWP",
+          "util": "FLASH x2, SMOKE",
+          "timing": "",
+          "role": "",
+          "vid": "https://streamable.com/rkpxg1"
+        },
+        {
+          "name": "",
+          "pos": "IGL",
+          "util": "SMOKE, MOLOTOV, FLASH x2",
+          "timing": "",
+          "role": "",
+          "vid": "https://streamable.com/lul52t"
+        }
+      ]
+    },
+    {
+      "id": "4nvbpsx",
+      "name": "Split B Pistol",
+      "map": "mirage",
+      "side": "T",
+      "desc": "",
+      "video": "https://streamable.com/1hepoq",
+      "players": [
+        {
+          "name": "",
+          "pos": "Entry",
+          "util": "",
+          "timing": "CALL",
+          "role": "Podnosi smoke od lurka",
+          "vid": "https://streamable.com/lsd5qz"
+        },
+        {
+          "name": "",
+          "pos": "Rifler",
+          "util": "",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/c81yco"
+        },
+        {
+          "name": "",
+          "pos": "Lurk",
+          "util": "SMOKE,MOLOTOV",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/rivtuc"
+        },
+        {
+          "name": "",
+          "pos": "AWP",
+          "util": "",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/kgjlyi"
+        },
+        {
+          "name": "",
+          "pos": "IGL",
+          "util": "SMOKE, FLASH x2",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/lncm1o"
+        }
+      ]
+    },
+    {
+      "id": "h1kli8y",
+      "name": "POP A",
+      "map": "mirage",
+      "side": "T",
+      "desc": "",
+      "video": "https://streamable.com/45jjk6",
+      "players": [
+        {
+          "name": "",
+          "pos": "Entry",
+          "util": "",
+          "timing": "PO FLESHU",
+          "role": "",
+          "vid": "https://streamable.com/8vd0q8"
+        },
+        {
+          "name": "",
+          "pos": "Rifler",
+          "util": "",
+          "timing": "PO FLESHU",
+          "role": "",
+          "vid": "https://streamable.com/b8ww27"
+        },
+        {
+          "name": "",
+          "pos": "Lurk",
+          "util": "MOLOTOV, SMOKE, FLASH",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/eev1ee"
+        },
+        {
+          "name": "",
+          "pos": "AWP",
+          "util": "SMOKE, FLASH x2",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/v9x2sh"
+        },
+        {
+          "name": "",
+          "pos": "IGL",
+          "util": "SMOKE, FLASH x2, MOLOTOV",
+          "timing": "CALL",
+          "role": "",
+          "vid": "https://streamable.com/tyueqi"
+        }
+      ]
+    }
+  ],
+  "nades": [
+    {
+      "id": "lfr7i3h",
+      "title": "SPAWN 1 OKNO",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/9jdkce",
+      "note": "JUMPTHROW + W"
+    },
+    {
+      "id": "ml8s51w",
+      "title": "SPAWN 1 HEAVEN",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/llgz8e",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "m4dof1t",
+      "title": "SPAWN 1 ANTI-INSTA ELBOW",
+      "map": "Ancient",
+      "type": "molotov",
+      "url": "https://streamable.com/76zgeb",
+      "note": "SHIFT+W+JUMPTHROW"
+    },
+    {
+      "id": "zuqrpfd",
+      "title": "SPAWN 2 HEAVEN-CAVE",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/moizw1",
+      "note": "JUMPTHROW+W"
+    },
+    {
+      "id": "rki4657",
+      "title": "SPAWN 3 OKNO",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/ky64se",
+      "note": "JUMPTHROW+W"
+    },
+    {
+      "id": "vfdn6yp",
+      "title": "SPAWN 3 SMOKE CAVE",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/c83yju",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "eag9fhy",
+      "title": "SPAWN 4 OKNO",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/109oe1",
+      "note": "JUMPTHROW + W"
+    },
+    {
+      "id": "nacwsxf",
+      "title": "SPAWN 4 HEAVEN-CAVE",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/pdhntu",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "yiyb7np",
+      "title": "DONUT",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/h5cywg",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "h9ghkyd",
+      "title": "CT BOMBISTE A",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/naqxry",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "nkbgbpu",
+      "title": "DONUT BOMBSITE A",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/heamzc",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "g70uezk",
+      "title": "FAST CT BOMBISTE A",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/qyb99u",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "d132wfb",
+      "title": "INSTA SPAWN 5 ELBOW CT",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/poe0jp",
+      "note": "SHIFT+W+JUMPTHROW"
+    },
+    {
+      "id": "4kzun2x",
+      "title": "SMOKE SHORT, LONG B",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/xamwsc",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "w27ribf",
+      "title": "SMOKE RED TO A",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/ynjkb6",
+      "note": "CROUCH+W+JUMPTHROW"
+    },
+    {
+      "id": "x5nll20",
+      "title": "CONECTOR B , DEEP CT",
+      "map": "Ancient",
+      "type": "smoke",
+      "url": "https://streamable.com/cwztow",
+      "note": "JUMPTHROW+W , SHIFT+W+JUMPTHROW"
+    },
+    {
+      "id": "czgzzxa",
+      "title": "ENTRY BOMBSITE A",
+      "map": "Ancient",
+      "type": "flash",
+      "url": "https://streamable.com/sou0c4",
+      "note": "W+THROW"
+    },
+    {
+      "id": "rmqmq1e",
+      "title": "ENTRY MID",
+      "map": "Ancient",
+      "type": "flash",
+      "url": "https://streamable.com/mar64z",
+      "note": "JUMPTHROW"
+    },
+    {
+      "id": "fmtqtsa",
+      "title": "MOLOTOV BOMBSITE A BOOST",
+      "map": "Ancient",
+      "type": "molotov",
+      "url": "https://streamable.com/errmxm",
+      "note": ""
+    },
+    {
+      "id": "d2xrr1a",
+      "title": "HEAVEN MID",
+      "map": "Ancient",
+      "type": "molotov",
+      "url": "https://streamable.com/fle6ow",
+      "note": ""
+    }
+  ],
+  "boards": {
+    "mirage|aa": [
+      {
+        "t": "pen",
+        "c": "#ff5a1f",
+        "w": 4,
+        "p": [
+          [594.0575815738963, 211.77735124760076],
+          [564.5758157389636, 213.74280230326295],
+          [505.6122840690979, 220.62188099808063],
+          [490.87140115163146, 222.5873320537428],
+          [450.5796545105566, 232.41458733205374],
+          [402.42610364683304, 255.0172744721689],
+          [397.51247600767755, 258.9481765834933],
+          [374.9097888675624, 284.4990403071017],
+          [365.08253358925145, 319.8771593090211],
+          [364.09980806142033, 329.70441458733205],
+          [373.92706333973126, 360.16890595009596],
+          [401.4433781190019, 389.6506717850288],
+          [406.3570057581574, 392.59884836852206],
+          [448.61420345489444, 408.3224568138196],
+          [515.4395393474089, 412.25335892514397],
+          [523.3013435700576, 411.27063339731285],
+          [578.3339731285988, 400.4606525911708],
+          [642.21113243762, 372.9443378119002],
+          [650.0729366602687, 369.0134357005758],
+          [701.1746641074856, 332.65259117082536],
+          [731.6391554702495, 289.4126679462572],
+          [733.6046065259117, 283.51631477927066],
+          [740.4836852207294, 242.24184261036467],
+          [725.7428023032629, 191.14011516314778],
+          [693.3128598848368, 152.81381957773513],
+          [635.3320537428023, 116.45297504798465],
+          [572.4376199616123, 92.8675623800384],
+          [517.404990403071, 84.02303262955854],
+          [480.06142034548947, 97.78119001919386],
+          [459.4241842610365, 135.12476007677543],
+          [451.56238003838774, 179.34740882917467],
+          [450.5796545105566, 227.50095969289828],
+          [454.510556621881, 284.4990403071017],
+          [460.40690978886755, 333.6353166986564],
+          [468.2687140115163, 378.84069097888676],
+          [480.06142034548947, 419.1324376199616],
+          [497.75047984644914, 456.4760076775432],
+          [521.3358925143954, 480.06142034548947],
+          [555.7312859884837, 497.75047984644914],
+          [590.1266794625719, 506.595009596929],
+          [627.4702495201535, 509.54318618042225],
+          [669.7274472168906, 507.57773512476007],
+          [674.6410748560461, 507.57773512476007],
+          [716.898272552783, 501.6813819577735],
+          [749.3282149712093, 493.81957773512477],
+          [753.2591170825336, 492.83685220729365],
+          [783.7236084452975, 482.02687140115165],
+          [794.5335892514396, 477.11324376199616],
+          [795.5163147792706, 477.11324376199616],
+          [794.5335892514396, 478.0959692898273],
+          [783.7236084452975, 484.9750479846449],
+          [777.827255278311, 487.9232245681382],
+          [740.4836852207294, 503.6468330134357],
+          [691.3474088291747, 517.404990403071],
+          [682.5028790786948, 518.3877159309021],
+          [598.9712092130518, 531.1631477927064],
+          [526.2495201535509, 538.042226487524],
+          [505.6122840690979, 540.0076775431862],
+          [432.89059500959695, 545.9040307101727],
+          [360.16890595009596, 549.8349328214971],
+          [340.5143953934741, 550.8176583493282],
+          [264.84452975047986, 548.8522072936661],
+          [213.74280230326295, 539.0249520153551],
+          [198.01919385796546, 535.0940499040307],
+          [137.09021113243762, 502.66410748560463],
+          [106.62571976967371, 471.2168905950096],
+          [98.76391554702495, 459.4241842610365],
+          [78.12667946257197, 405.3742802303263],
+          [75.17850287907869, 364.09980806142033],
+          [79.10940499040306, 344.4452975047985],
+          [102.69481765834932, 297.27447216890596],
+          [135.12476007677543, 266.80998080614205],
+          [149.86564299424185, 258.9481765834933],
+          [237.3282149712092, 231.43186180422265],
+          [302.1880998080614, 222.5873320537428],
+          [345.42802303262954, 219.63915547024953],
+          [468.2687140115163, 218.6564299424184],
+          [563.5930902111324, 221.60460652591172]
+        ]
+      }
+    ]
+  },
+  "bg": {}
+}
