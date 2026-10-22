@@ -127,10 +127,23 @@ function renderAuth(){
 async function init(){
  let remote=null,local=null;
  try{const r=await fetch('data.json?t='+Date.now(),{cache:'no-store'});if(r.ok)remote=await r.json()}catch(e){}
- if(ADMIN||!remote){try{const r=localStorage.getItem('mrush1');if(r)local=JSON.parse(r)}catch(e){}}
- const src=(ADMIN&&local)||remote||local||{};
- S=Object.assign({tactics:[],nades:[],boards:{},bg:{}},src);
- if(!S.tactics.length)S.tactics=defaultTactics();
+ try{const r=localStorage.getItem('mrush1');if(r)local=JSON.parse(r)}catch(e){}
+ const base=remote||local||{};
+ if(ADMIN&&local){
+  S={
+   tactics:local.tactics||remote?.tactics||defaultTactics(),
+   nades:local.nades||remote?.nades||[],
+   boards:local.boards||remote?.boards||{},
+   bg:local.bg||remote?.bg||{}
+  };
+ }else{
+  S={
+   tactics:base.tactics||defaultTactics(),
+   nades:base.nades||[],
+   boards:base.boards||{},
+   bg:base.bg||{}
+  };
+ }
  NOREMOTE=!remote;
  DIRTY=ADMIN&&(!remote||['tactics','nades','boards','bg'].some(k=>JSON.stringify(S[k])!==JSON.stringify(remote[k]??(k=='tactics'||k=='nades'?[]:{}))));
  renderAuth();render();liveStart();
@@ -178,9 +191,11 @@ function liveView(){
 function liveRecv(m){
  if(!m)return;
  if(m.t==='d'){
-  S.tactics=m.tactics;S.nades=m.nades;S.boards=m.boards;
-  if(m.bg) { S.bg=m.bg; if(ui.v==='board') loadBg(); }
-  if(LIVE.follow&&ui.v!=='board')render();
+  if(m.tactics) S.tactics=m.tactics;
+  if(m.nades) S.nades=m.nades;
+  if(m.boards) S.boards=m.boards;
+  if(m.bg){ S.bg=m.bg; if(ui.v==='board') loadBg(); }
+  if(LIVE.follow)render();
   return;
  }
  if(m.t==='s'&&LIVE.follow){
@@ -221,7 +236,6 @@ function liveStart(){
 /* PLAYBOOK */
 const ROLES={Entry:['⚔️','#ff5a1f'],Rifler:['🤝','#3ddc84'],Lurk:['🕵️','#a77bff'],AWP:['🎯','#ffb400'],IGL:['🧠','#4aa3ff']};
 const ri=p=>ROLES[p]||['👤','#8b90a3'];
-/* Rozpoznaje link YouTube (yt:ID) albo Streamable (st:ID). Pusty string = brak filmu. */
 const ytid=u=>{u=String(u);let m=u.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);if(m)return 'yt:'+m[1];m=u.match(/streamable\.com\/(?:[eos]\/)?([a-z0-9]+)/i);return m?'st:'+m[1]:''};
 const vlist=s=>String(s||'').split('\n').map(l=>l.trim()).filter(Boolean).map((l,i)=>{const p=l.split('|'),url=p.pop().trim();return{title:p.join('|').trim()||'Krok '+(i+1),url,id:ytid(url)}});
 const IS_FILE=location.protocol==='file:';
@@ -232,7 +246,7 @@ const emb=k=>{const [t,id]=k.split(':');
 const fileWarn=()=>IS_FILE?`<div class="warn">⚠️ Strona jest otwarta z dysku (file://), więc YouTube blokuje osadzone filmy (błąd 153). Filmy ze Streamable działają normalnie. Żeby działał też YouTube, uruchom stronę przez http: w folderze z plikiem wpisz <b>python -m http.server 8000</b> i wejdź na <b>http://localhost:8000</b>, albo wrzuć plik na GitHub Pages / Netlify.</div>`:'';
 function rPlay(){
  const a=$('#app');
- const t=ui.open&&S.tactics.find(x=>x.id===ui.open);
+ const t=ui.open&&(S.tactics||[]).find(x=>x.id===ui.open);
  if(t){
   const p=t.players[ui.pl]||t.players[0],[ic,col]=ri(p.pos),mv=ytid(t.video),steps=vlist(p.vid);
   a.innerHTML=`${fileWarn()}<div class="bar"><button class="btn" onclick="ui.open=null;render()">← Wróć</button><span class="sp"></span>${ADMIN?`<button class="btn" onclick="editT('${t.id}')">Edytuj</button><button class="btn red" onclick="delT('${t.id}')">Usuń</button>`:''}</div>
@@ -245,13 +259,13 @@ function rPlay(){
   ${steps.length?`<div class="steps">${steps.map((v,i)=>`<div class="step" style="--c:${col}"><b><span class="sn">${i+1}</span>${esc(v.title)}</b>${v.id?emb(v.id):''}<a class="btn sm" style="text-decoration:none;display:inline-block;margin-top:6px" target="_blank" rel="noopener" href="${esc(v.url)}">Otwórz link</a></div>`).join('')}</div>`:`<p class="muted">Brak filmów dla tej roli.${ADMIN?' Dodaj je w edycji taktyki.':''}</p>`}</div>
   <details><summary>📋 Przegląd całej drużyny</summary><table><tr><th>Rola</th><th>Zadanie</th><th>Granaty</th><th>Kiedy</th></tr>${t.players.map(q=>`<tr><td>${ri(q.pos)[0]}${esc(q.pos)} ${esc(q.name)}</td><td>${esc(q.role)}</td><td>${esc(q.util)}</td><td>${esc(q.timing)}</td></tr>`).join('')}</table></details>`;
   return}
- const l=S.tactics.filter(x=>x.map===ui.map&&(ui.side==='all'||x.side===ui.side));
+ const l=(S.tactics||[]).filter(x=>x.map===ui.map&&(ui.side==='all'||x.side===ui.side));
  a.innerHTML=`<div class="bar">${chips(MAPS,ui.map,'map')}<span class="sp"></span>${chips(['T','CT'],ui.side,'side',1)}${ADMIN?'<button class="btn pri" onclick="editT()">+ Nowa taktyka</button>':''}</div>
  <div class="grid">${l.map(x=>`<div class="card ${x.side=='CT'?'ct':''}" style="cursor:pointer" onclick="ui.open='${x.id}';ui.pl=0;render()"><span class="tag ${x.side=='CT'?'ct':''}">${x.side}</span>${x.video?'🎬':''}<h3>${esc(x.name)}</h3><div class="muted">${esc(x.desc).slice(0,100)}</div><div class="tc">${x.players.map(q=>`<span>${ri(q.pos)[0]}</span>`).join('')}</div></div>`).join('')||`<p class="muted">Brak taktyk na tej mapie.${ADMIN?' Dodaj pierwszą!':''}</p>`}</div>`;
 }
 function editT(id){
  if(!ADMIN)return;
- const t=S.tactics.find(x=>x.id===id)||{map:ui.map,side:'T',name:'',desc:'',video:'',players:POS.map(p=>({name:'',pos:p,role:'',util:'',timing:'',vid:''}))};
+ const t=(S.tactics||[]).find(x=>x.id===id)||{map:ui.map,side:'T',name:'',desc:'',video:'',players:POS.map(p=>({name:'',pos:p,role:'',util:'',timing:'',vid:''}))};
  $('#mbody').innerHTML=`<h2 style="margin-top:0">${id?'Edytuj':'Nowa'} taktyka</h2>
  <div class="pl" style="grid-template-columns:2fr 1fr 1fr"><div><label>Nazwa</label><input id="f_name" value="${esc(t.name)}"></div><div><label>Mapa</label><select id="f_map">${MAPS.map(m=>`<option ${m==t.map?'selected':''}>${m}</option>`).join('')}</select></div><div><label>Strona</label><select id="f_side"><option ${t.side=='T'?'selected':''}>T</option><option ${t.side=='CT'?'selected':''}>CT</option></select></div></div>
  <label>Opis / ogólny plan</label><textarea id="f_desc">${esc(t.desc)}</textarea>
@@ -262,28 +276,28 @@ function editT(id){
 }
 function saveT(id){
  if(!ADMIN)return;
- const t=S.tactics.find(x=>x.id===id)||{id:uid()};
+ const t=(S.tactics||[]).find(x=>x.id===id)||(S.tactics[S.tactics.length]={id:uid()});
  t.name=$('#f_name').value||'Bez nazwy';t.map=$('#f_map').value;t.side=$('#f_side').value;t.desc=$('#f_desc').value;t.video=$('#f_vid').value;
  t.players=POS.map(()=>({}));document.querySelectorAll('#mbody [data-i]').forEach(e=>t.players[e.dataset.i][e.dataset.k]=e.value);
- if(!id)S.tactics.push(t);ui.map=t.map;save();closeM();render();
+ ui.map=t.map;save();closeM();render();
 }
-function delT(id){if(!ADMIN)return;if(confirm('Usunąć taktykę?')){S.tactics=S.tactics.filter(t=>t.id!==id);ui.open=null;save();render()}}
+function delT(id){if(!ADMIN)return;if(confirm('Usunąć taktykę?')){S.tactics=(S.tactics||[]).filter(t=>t.id!==id);ui.open=null;save();render()}}
 const closeM=()=>$('#modal').classList.remove('on');
 /* GRENADES */
 const NT=['smoke','flash','molotov','he'];
 function rNades(){
- const l=S.nades.filter(n=>n.map===ui.map&&(ui.ntype==='all'||n.type===ui.ntype));
+ const l=(S.nades||[]).filter(n=>n.map===ui.map&&(ui.ntype==='all'||n.type===ui.ntype));
  $('#app').innerHTML=`${fileWarn()}<div class="bar">${chips(MAPS,ui.map,'map')}<span class="sp"></span>${chips(NT,ui.ntype,'ntype',1)}${ADMIN?'<button class="btn pri" onclick="editN()">+ Dodaj granat</button>':''}</div>
  <div class="grid">${l.map(n=>{const id=ytid(n.url);return `<div class="card"><h3>${esc(n.title)}</h3><div class="muted" style="margin-bottom:8px"><span class="tag">${n.type.toUpperCase()}</span>${esc(n.note)}</div>${id?emb(id):''}<div class="bar" style="margin:8px 0 0"><a class="btn sm" style="text-decoration:none" target="_blank" rel="noopener" href="${esc(n.url)}">Otwórz link</a><span class="sp"></span>${ADMIN?`<button class="btn sm" onclick="editN('${n.id}')">Edytuj</button><button class="btn sm red" onclick="delN('${n.id}')">Usuń</button>`:''}</div></div>`}).join('')||`<p class="muted">Brak granatów.${ADMIN?' Wklej link do filmu z YouTube lub Streamable.':''}</p>`}</div>`;
 }
 function editN(id){
  if(!ADMIN)return;
- const n=S.nades.find(x=>x.id===id)||{map:ui.map,type:'smoke',title:'',url:'',note:''};
+ const n=(S.nades||[]).find(x=>x.id===id)||{map:ui.map,type:'smoke',title:'',url:'',note:''};
  $('#mbody').innerHTML=`<h2 style="margin-top:0">Granat</h2><label>Tytuł (np. Smoke CT z T spawn)</label><input id="n_t" value="${esc(n.title)}"><label>Mapa</label><select id="n_m">${MAPS.map(m=>`<option ${m==n.map?'selected':''}>${m}</option>`).join('')}</select><label>Typ</label><select id="n_y">${NT.map(m=>`<option ${m==n.type?'selected':''}>${m}</option>`).join('')}</select><label>Link YouTube lub Streamable</label><input id="n_u" value="${esc(n.url)}"><label>Notatka (pozycja, klawisze)</label><input id="n_n" value="${esc(n.note)}"><div class="bar" style="margin-top:12px"><button class="btn pri" onclick="saveN('${id||''}')">Zapisz</button><button class="btn" onclick="closeM()">Anuluj</button></div>`;
  $('#modal').classList.add('on');
 }
-function saveN(id){if(!ADMIN)return;const n=S.nades.find(x=>x.id===id)||{id:uid()};n.title=$('#n_t').value||'Bez nazwy';n.map=$('#n_m').value;n.type=$('#n_y').value;n.url=$('#n_u').value;n.note=$('#n_n').value;if(!id)S.nades.push(n);ui.map=n.map;save();closeM();render()}
-function delN(id){if(!ADMIN)return;if(confirm('Usunąć?')){S.nades=S.nades.filter(n=>n.id!==id);save();render()}}
+function saveN(id){if(!ADMIN)return;if(!S.nades)S.nades=[];const n=S.nades.find(x=>x.id===id)||{id:uid()};n.title=$('#n_t').value||'Bez nazwy';n.map=$('#n_m').value;n.type=$('#n_y').value;n.url=$('#n_u').value;n.note=$('#n_n').value;if(!id)S.nades.push(n);ui.map=n.map;save();closeM();render()}
+function delN(id){if(!ADMIN)return;if(confirm('Usunąć?')){S.nades=(S.nades||[]).filter(n=>n.id!==id);save();render()}}
 /* BOARD */
 let B={objs:[],tool:'pen',color:'#ff5a1f',icon:'smoke',side:'T',num:1,sel:null,cur:null,hist:[],fut:[],img:null,size:5,dash:false,drafts:{},map:null};
 const svg=(p,c,s=26)=>`<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">${p.map(([d,m])=>m=='f'?`<path d="${d}" fill="${c}" stroke="none"/>`:`<path d="${d}" stroke="${c}"/>`).join('')}</svg>`;
@@ -317,7 +331,7 @@ const tbtn=(k,attr)=>`<button class="bt" ${attr}>${svg(TI[k][1],'currentColor')}
 function rBoard(){
  if(B.map)B.drafts[B.map]=B.objs;
  B.map=ui.map;B.objs=B.drafts[ui.map]||[];B.hist=[];B.fut=[];B.sel=null;B.cur=null;
- const names=Object.keys(S.boards).filter(k=>k.startsWith(ui.map+'|'));
+ const names=Object.keys(S.boards||{}).filter(k=>k.startsWith(ui.map+'|'));
  $('#app').innerHTML=`<div class="bd-top">${chips(MAPS,ui.map,'map')}<span class="sp"></span><select id="bl" style="width:auto" onchange="loadB(this.value)"><option value="">— wczytaj tablicę —</option>${names.map(k=>`<option value="${esc(k)}">${esc(k.split('|')[1])}</option>`).join('')}</select>${ADMIN?'<button class="btn" onclick="saveB()">Zapisz tablicę</button>':''}<button class="btn" onclick="png()">Pobierz PNG</button></div>
  <div class="bd-wrap"><div class="bd-stage"><div class="bd-title">${ui.map.toUpperCase()}<small>RADAR</small></div><canvas id="cv" width="1024" height="1024"></canvas></div>
  <div class="bd-side">
@@ -334,7 +348,6 @@ function rBoard(){
  const cv=$('#cv');
  if(ADMIN){cv.onpointerdown=pd;cv.onpointermove=pm;cv.onpointerup=pu}
  else{
-  /* gość: tylko podgląd, bez narzędzi i bez rysowania */
   cv.style.cursor='default';cv.style.pointerEvents='none';
   document.querySelector('.bd-wrap').style.gridTemplateColumns='1fr';
   document.querySelector('.bd-side').innerHTML='<p class="bd-note">👁️ Tryb podglądu: tablicą steruje host (admin). Rysunki widzisz na żywo.</p>';
@@ -348,10 +361,10 @@ function rBoard(){
   else if(d.n)B.num=+d.n;
   else if(b.id==='dash')B.dash=!B.dash;
   mark()};
- const bgf=$('#bgf');if(bgf)bgf.onchange=e=>{if(!ADMIN)return;const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=1024;c.getContext('2d').drawImage(im,0,0,1024,1024);S.bg[ui.map]=c.toDataURL('image/jpeg',.85);save();loadBg()};im.src=URL.createObjectURL(f)};
+ const bgf=$('#bgf');if(bgf)bgf.onchange=e=>{if(!ADMIN)return;const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=1024;c.getContext('2d').drawImage(im,0,0,1024,1024);if(!S.bg)S.bg={};S.bg[ui.map]=c.toDataURL('image/jpeg',.85);save();loadBg()};im.src=URL.createObjectURL(f)};
  loadBg();mark();
 }
-function delRadar(){if(!ADMIN)return;delete S.bg[ui.map];save();loadBg()}
+function delRadar(){if(!ADMIN)return;if(S.bg)delete S.bg[ui.map];save();loadBg()}
 function mark(){
  const q=(s,f)=>document.querySelectorAll(s).forEach(b=>b.classList.toggle('on',f(b)));
  q('[data-t]',b=>b.dataset.t===B.tool);
@@ -362,10 +375,9 @@ function mark(){
  q('[data-n]',b=>+b.dataset.n===B.num);
  const d=$('#dash');if(d)d.classList.toggle('on',B.dash);
 }
-/* Radar: najpierw wgrany przez admina, potem radars/<mapa>.png|jpg|webp z repozytorium */
-function loadBg(){const m=ui.map,c=[S.bg[m],`radars/${m}.png`,`radars/${m}.jpg`,`radars/${m}.webp`].filter(Boolean);B.img=null;draw();
+function loadBg(){const m=ui.map,c=[(S.bg&&S.bg[m]),`radars/${m}.png`,`radars/${m}.jpg`,`radars/${m}.webp`].filter(Boolean);B.img=null;draw();
  (function next(){const s=c.shift();if(!s)return;const i=new Image();i.onload=()=>{if(ui.map===m&&$('#cv')){B.img=i;draw()}};i.onerror=next;i.src=s})()}
-function saveB(){if(!ADMIN)return;const n=prompt('Nazwa tablicy (np. A split):');if(!n)return;S.boards[ui.map+'|'+n]=JSON.parse(JSON.stringify(B.objs));save();rBoard()}
+function saveB(){if(!ADMIN)return;const n=prompt('Nazwa tablicy (np. A split):');if(!n)return;if(!S.boards)S.boards={};S.boards[ui.map+'|'+n]=JSON.parse(JSON.stringify(B.objs));save();rBoard()}
 function loadB(k){if(!k)return;snap();B.objs=JSON.parse(JSON.stringify(S.boards[k]));B.sel=null;draw()}
 function png(){try{const a=document.createElement('a');a.download='mrush-'+ui.map+'.png';a.href=$('#cv').toDataURL();a.click()}catch(e){alert('Nie można wyeksportować PNG przy otwarciu z dysku (file://). Uruchom stronę przez http/https.')}}
 function snap(){const j=JSON.stringify(B.objs);if(B.hist[B.hist.length-1]!==j){B.hist.push(j);if(B.hist.length>100)B.hist.shift();B.fut=[]}}
@@ -414,7 +426,7 @@ function hit(p){for(let i=B.objs.length-1;i>=0;i--){const b=bb(B.objs[i]);if(p[0
 const pos=e=>{const r=$('#cv').getBoundingClientRect();return[(e.clientX-r.left)*1024/r.width,(e.clientY-r.top)*1024/r.height]};
 let drag=null;
 function pd(e){
- if(!ADMIN)return; /* tylko admin rysuje */
+ if(!ADMIN)return;
  snap();const p=pos(e);$('#cv').setPointerCapture(e.pointerId);const t=B.tool;
  if(t!='move')B.sel=null;
  if(t=='pen')B.cur={t:'pen',c:B.color,w:B.size,d:B.dash,p:[p]};
